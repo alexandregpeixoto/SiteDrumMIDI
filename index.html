@@ -1,132 +1,266 @@
 ﻿<!DOCTYPE HTML>
 <html>
-	<head>
-		<title>AGP MIDI Drums V1.0</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body>
 
-		<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="title">AGP MIDI Drums V1.0</a>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="index.html">Create a Preset</a></li>
-						<li><a href="index.html">Load a Preset</a></li>
-					</ul>
-				</nav>
-			</header>
+<head>
+	<title>AGP MIDI Drums V1.0</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<body>
 
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">Create a Preset</h1>
-							<section>
-									<form method="post" action="#">
-										<div class="row uniform">
-	
-											<div class="12u 12u$(xsmall)">
-											<h4>Preset Name</h4>
-												<input type="text" name="preset-name" id="demo-name" value="" placeholder="Preset Name" />
-											</div>
-										
-											<div class="4u">
-											<h4>Analog Port - 01</h4>
-												<div class="select-wrapper">
-													<select name="analog-port-01-instrument" id="demo-category">
-														<option value="">Select the Instrument</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>	
-													<input type="range" name="analog-port-01-intensity" min="0" max="100" value="50" id="fader" step="1">
-												</div>
-											</div>
-											
-											<div class="4u">
-											<h4>Analog Port - 02</h4>
-												<div class="select-wrapper">
-													<select name="analog-port-02-instrument" id="demo-category">
-														<option value="">Select the Instrument</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>
-													<input type="range" name="analog-port-02-intensity"   min="0" max="100" value="50" id="fader" step="1">
-												</div>
-											</div>
-											
-											<div class="4u">
-											<h4>Analog Port - 03</h4>
-												<div class="select-wrapper">
-													<select name="analog-port-03-instrument" id="demo-category">
-														<option value="">Select the Instrument</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>
-													<input type="range" name="analog-port-03-intensity"  min="0" max="100" value="50" id="fader" step="1">
-												</div>
-											</div>
-											
-											<div class="4u">
-											<h4>Analog Port - 04</h4>
-												<div class="select-wrapper">
-													<select name="analog-port-04-instrument" id="demo-category">
-														<option value="">Select the Instrument</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>
-													<input type="range" name="analog-port-04-intensity"  min="0" max="100" value="50" id="fader" step="1">
-												</div>
-											</div>
-											
-											<div class="4u">
-											<h4>Analog Port - 05</h4>
-												<div class="select-wrapper">
-													<select name="analog-port-05-instrument"  id="demo-category">
-														<option value="">Select the Instrument</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>
-													<input type="range" name="analog-port-05-intensity" min="0" max="100" value="50" id="fader" step="1">
-												</div>
-											</div>
-												
-											<div class="4u">
-											<h4>Save and download this preset?</h4>
-												<ul class="actions">
-													<li><a href="#"  class="button">Yes</a></li>
-												</ul>
-											</div>												
-										</div>
-									</form>
-								</section>				
+	<!-- Header -->
+	<header id="header">
+		<a href="index.html" class="title">AGP MIDI Drums V1.0</a>
+		<nav>
+			<ul>
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li>
+					<a href="index.html">Create a Preset</a>
+				</li>
+				<li>
+					<a href="index.html">Load a Preset</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">Create a Preset</h1>
+				<section>
+					<form id="preset-form" method="post" action="#">
+						<div class="row uniform">
+
+							<div class="12u 12u$(xsmall)">
+								<h4>Preset Name</h4>
+								<input type="hidden" name="preset-id" value="-1" />
+								<input type="text" name="preset-name" value="" placeholder="Preset Name" />
 							</div>
-					</section>
+
+							<div class="4u">
+								<h4>Analog Port - 01</h4>
+								<div class="select-wrapper">
+									<select name="drum-part-01-noteid" class="drum-part-select">
+										<option value="">Select the Instrument</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+									<input type="range" name="drum-part-01-intensity" min="0" max="100" value="50" id="fader" step="1">
+								</div>
+							</div>
+
+							<div class="4u">
+								<h4>Analog Port - 02</h4>
+								<div class="select-wrapper">
+									<select name="drum-part-02-noteid" class="drum-part-select">
+										<option value="">Select the Instrument</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+									<input type="range" name="drum-part-02-intensity" min="0" max="100" value="50" id="fader" step="1">
+								</div>
+							</div>
+
+							<div class="4u">
+								<h4>Analog Port - 03</h4>
+								<div class="select-wrapper">
+									<select name="drum-part-03-noteid" class="drum-part-select">
+										<option value="">Select the Instrument</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+									<input type="range" name="drum-part-03-intensity" min="0" max="100" value="50" id="fader" step="1">
+								</div>
+							</div>
+
+							<div class="4u">
+								<h4>Analog Port - 04</h4>
+								<div class="select-wrapper">
+									<select name="drum-part-04-noteid" class="drum-part-select">
+										<option value="">Select the Instrument</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+									<input type="range" name="drum-part-04-intensity" min="0" max="100" value="50" id="fader" step="1">
+								</div>
+							</div>
+
+							<div class="4u">
+								<h4>Analog Port - 05</h4>
+								<div class="select-wrapper">
+									<select name="drum-part-05-noteid" class="drum-part-select">
+										<option value="">Select the Instrument</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+									<input type="range" name="drum-part-05-intensity" min="0" max="100" value="50" id="fader" step="1">
+								</div>
+							</div>
+
+							<div class="4u">
+								<h4>Save and download this preset?</h4>
+								<ul class="actions">
+									<li>
+										<a id="yes-button" href="#" class="button">Yes</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</section>
 			</div>
+		</section>
+	</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-
-        <script>
-
-
-        </script>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="assets/js/main.js"></script>
 
 
-	</body>
+	<script>
+		let API_ADDRESS = "http://localhost:5000/api";
+		let USER_ID = 1;
+
+		$(document).ready(function () {
+
+
+			//-----------------------------------
+			//Carrega selects com lista de partes da bateria
+			//-----------------------------------
+			$.get(API_ADDRESS + "/note", function (drumparts, status) {
+
+				console.log(status);
+
+				let $drumPartSelects = $(".drum-part-select") //pega todos os selects que possuem a classe drum-part-select
+				$drumPartSelects.find('option').remove().end() //para cada um dos selects encontrados nós removemos os filhos
+
+				//se o ws não respondeu ignora tudo o restante da instrução
+				if (status != 'success' || drumparts == null || drumparts.lenght == 0) {
+					return;
+				}
+
+				//agora adicionamos os novos conforme resultado do ws
+				$drumPartSelects.append($.map(drumparts, function (o) {
+					return $('<option/>', {
+						value: o.Id,
+						text: o.Name
+					});
+				}));
+
+				//agora fazemos uma nova requisição ao WS para pegar os dados do preset que estamos editando	
+				$.get(API_ADDRESS + "/Preset", function (data, status) {
+					console.log(status);
+					//se o ws respondeu ok e temos um preset criado então preenchemos a pagina com os dados recebidos
+					if (status != 'success' || data == null || data.length == 0) {
+						return;
+					}
+
+					let preset = data[0];
+
+					$('input[name=preset-id]').val(preset.Id);
+					$('input[name=preset-name]').val(preset.Name);
+
+					$('select[name=drum-part-01-noteid]').val(preset.DrumPart1.NoteId);
+					$('select[name=drum-part-02-noteid]').val(preset.DrumPart2.NoteId);
+					$('select[name=drum-part-03-noteid]').val(preset.DrumPart3.NoteId);
+					$('select[name=drum-part-04-noteid]').val(preset.DrumPart4.NoteId);
+					$('select[name=drum-part-05-noteid]').val(preset.DrumPart5.NoteId);
+
+					$('input[name=drum-part-01-intensity]').val(preset.DrumPart1.Intensity);
+					$('input[name=drum-part-02-intensity]').val(preset.DrumPart2.Intensity);
+					$('input[name=drum-part-03-intensity]').val(preset.DrumPart3.Intensity);
+					$('input[name=drum-part-04-intensity]').val(preset.DrumPart4.Intensity);
+					$('input[name=drum-part-05-intensity]').val(preset.DrumPart5.Intensity);
+				});
+			});
+
+			//-----------------------------------
+			//Salva dados do preset
+			//-----------------------------------
+			$("#yes-button").click(function () {
+				//criamos o obj do preset
+				let preset = {
+					Id: parseInt($('input[name=preset-id]').val()),
+					Name: $('input[name=preset-name]').val(),
+					DrumPart1: {
+						NoteId: $('select[name=drum-part-01-noteid]').val(),
+						Intensity: $('input[name=drum-part-01-intensity]').val()
+					},
+					DrumPart2: {
+						NoteId: $('select[name=drum-part-02-noteid]').val(),
+						Intensity: $('input[name=drum-part-02-intensity]').val()
+					},
+					DrumPart3: {
+						NoteId: $('select[name=drum-part-03-noteid]').val(),
+						Intensity: $('input[name=drum-part-03-intensity]').val()
+					},
+					DrumPart4: {
+						NoteId: $('select[name=drum-part-04-noteid]').val(),
+						Intensity: $('input[name=drum-part-04-intensity]').val()
+					},
+					DrumPart5: {
+						NoteId: $('select[name=drum-part-05-noteid]').val(),
+						Intensity: $('input[name=drum-part-05-intensity]').val()
+					}
+				};
+
+				if (preset.Id <= 0) {
+
+					$.ajax({
+						type: 'POST',
+						url: API_ADDRESS + '/Preset',
+						contentType: "application/json",
+						data: JSON.stringify(preset),
+						success: function (data) {
+							$('input[name=preset-id]').val(data.Id);
+							console.log($('input[name=preset-id]').val());
+							alert("Preset criado com sucesso. [Id = " + data.Id + "]")
+						},
+						error: function (err) {
+							console.log(err);
+							alert("Ouve um problema na criação do presset")
+						}
+					});
+
+				} else {
+
+					$.ajax({
+						type: 'PUT',
+						url: API_ADDRESS + '/Preset/' + preset.Id,
+						contentType: "application/json",
+						data: JSON.stringify(preset),
+						success: function () {
+							alert("Preset atualizado com sucesso.")
+						},
+						error: function (err) {
+							console.log(err);
+							alert("Ouve um problema na atualização do presset")
+						}
+					});
+				}
+
+				//atualizamos se o preset se ele já existe
+			});
+		})
+	</script>
+
+
+</body>
+
 </html>
